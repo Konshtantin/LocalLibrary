@@ -11,7 +11,7 @@ const app = express()
 
 // register helmet for protection
 app.use(helmet())
-
+const port = process.env.PORT || 3000
 // Database connect
 const dev_db_url = 'mongodb+srv://Anonymous:A4QIA5JJ400AUyuX@node-library.uelbc.mongodb.net/Library?retryWrites=true&w=majority'
 const mongoDB = process.env.MONGODB_URI || dev_db_url;
