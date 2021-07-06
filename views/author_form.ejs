@@ -1,0 +1,34 @@
+<%- include('./partials/head') %>
+<body>
+    <div class="app">
+        <%- include('./partials/sidebar') %>
+        <div class="content">
+            <h1><%= title %></h1>
+            <form action="" method="POST">
+                <div class="form-group">
+                    <label for="first_name">First Name: </label>
+                    <input type="text" id="first_name" placeholder="First name (Konstantin) last" name="first_name" required value="<%= author?.first_name %>">
+                    <label for="family_name">Family Name: </label>
+                    <input type="text" name="family_name" id="family_name" placeholder="Family name (surname)" required value="<%= author?.family_name %>">
+                </div>
+                <div class="form-group">
+                    <label for="date_of_birth">Date of birth: </label>
+                    <input type="date" name="date_of_birth" id="date_of_birth" required value=<%= author?.dob_form %>>
+                </div>
+                <div class="form-group">
+                    <label for="date_of_death">Date of death: </label>
+                    <input type="date" name="date_of_death" id="date_of_death" required value=<%= author?.dod_form %> >
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+            <% if (errors) { %> the master chief collection
+            <ul>
+                <% errors.forEach(error => { %>
+                    <li><%= error.msg %> </li>
+                <% }) %>
+            </ul>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>

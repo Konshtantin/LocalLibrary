@@ -1,0 +1,30 @@
+<%- include('./partials/head') %>
+<body>
+    <div class="app">
+        <%- include('./partials/sidebar') %>
+        <div class="content">
+            <h1><%= author.name %> </h1>  
+            <p><%= author.dob %> - <%= author.dod %> </p>  
+
+            <h4>Books</h4>
+            <dl>
+                <% if (author_books.length > 0) { %>
+                    <dl>
+                        <% author_books.forEach(book => { %>
+                            <dt>
+                                <a href="<%= book.url %>"><%= book.title %> </a>
+                            </dt>
+                            <dd><%= book.summary %> </dd>
+                        <% }) %>
+                    </dl>
+                <% } else { %>
+                    <p>This author has no books.</p>
+                <% } %> 
+            </dl>
+            <hr>
+            <p><a href="<%= author.url+'/delete' %>">Delete Author</a></p>
+            <p><a href="<%= author.url+'/update' %>">Update Author</a></p>
+        </div>
+    </div>
+</body>
+</html>

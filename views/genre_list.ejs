@@ -1,0 +1,22 @@
+<%- include('./partials/head') %> 
+<body>
+    <div class="app">
+        <%- include('./partials/sidebar') %> 
+        <div class="content">
+            <h1><%= title %> </h1>
+            <ul>
+            <% if (genre_list.length > 0) { %>
+                <% genre_list.forEach(genre => { %>
+                <li>
+                    <a href="<%= genre.url %>"><%= genre.name %> </a>
+                </li>
+                <% }) %>
+            <% } else { %>
+                <li>There are no genres!</li>
+            <% } %> 
+            </ul>
+            
+        </div>
+    </div>
+</body>
+</html>

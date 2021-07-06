@@ -1,0 +1,36 @@
+<%- include('./partials/head') %>
+<body>
+    <div class="app">
+        <%- include('./partials/sidebar') %>
+        <div class="content">
+            <h1><%= author.name %> </h1>
+            <p><%= author.lifespan %> </p>
+
+            <% if (author_books.length) { %>
+                <p>Delete the following books before attempting to delete this author.</p>
+            
+                <div>
+                    <h4>Books</h4>
+                    <dl>
+                        <% author_books.forEach(book => { %>
+                            <dt>
+                                <a href="<%= book.url %>"><%= book.title %></a>
+                            </dt>
+                            <dd><%= book.summary %> </dd>
+                        <% }) %>
+                    </dl>
+                </div>
+            <% } else {%>
+                <p>Do you really want to delete this Author?</p>
+
+                <form action="" method="POST">
+                    <div class="form-group">
+                        <input type="hidden" name="authorid" value="<%= author._id %>">
+                    </div>
+                    <button type="submit">Delete Author</button>
+                </form>
+            <% } %> 
+        </div>
+    </div>  
+</body>
+</html>

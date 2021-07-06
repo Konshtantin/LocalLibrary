@@ -1,0 +1,32 @@
+<%- include('./partials/head') %> 
+<body>
+    <div class="app">
+        <%- include('./partials/sidebar') %> 
+        <div class="content">
+            <h1><%= title %></h1>
+
+            <ul>
+                <% if(bookinstance_list.length > 0) { %> 
+                    <% bookinstance_list.forEach(item => { %>
+                        <li>
+                            <a href="<%= item.url %>"><%= item.book.title %> : <%= item.imprint %></a> - 
+                            <% if(item.status === 'Available') { %> 
+                                <span class="text-success"><%= item.status %></span>
+                            <% } else if (item.status === 'Maintenance') { %>   
+                                <span class="text-danger"><%= item.status %> </span>
+                            <% } else { %>
+                                <span class="text-warning"><%= item.status %> </span>
+                            <% } %>    
+                            <% if(item.status != 'Avaliable') { %> 
+                                <span>Due: <%= item.dbf %> </span>
+                            <% } %> 
+                        </li>
+                    <% }) %> 
+                <% } else { %> 
+                    <li>There are no book copies in this library!</li>
+                <% } %> 
+            </ul>
+        </div>
+    </div>
+</body>
+</html>

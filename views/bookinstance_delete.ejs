@@ -1,0 +1,19 @@
+<%- include('./partials/head') %>
+<body>
+    <div class="app">
+        <%- include('./partials/sidebar') %>
+        <div class="content">
+            <h1><%= title %></h1>
+            <h2><%= bookinstance._id %> </h2>
+            <p>Do you really want to delete Book Instance of <%= bookinstance.book.title %> ?</p>
+            <form action="" method="POST">
+                <div class="form-group">
+                    <input type="hidden" name="bid" id="bid" value="<%= bookinstance._id %>">
+                </div>
+                <button type="submit">Delete BookInstance</button>
+            </form>
+            
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,50 @@
+<%- include('./partials/head') %>
+<body>
+    <div class="app">
+        <%- include('./partials/sidebar') %>
+        <div class="content">
+            <h1><%= title %> </h1>
+
+            <form action="" method="POST">
+                <div class="form_group">
+                    <label for="book">Book: </label>
+                    <select id="book" name="book" required>
+                        <% book_list.sort(function(a, b) {let textA = a.title.toUpperCase(); let textB = b.title.toUpperCase(); return (textA < textB) ? -1 : (textA > textB) ? 1 : 0;}) %> 
+                        <% book_list.forEach(book => { %>
+                            <% if (bookinstance) { %>
+                                <option value="<%= book._id %>" selected=<% bookinstance.book.toString()==book._id.toString() ? 'selected' : false %> ><%= book.title %> </option>
+                            <% } else { %>
+                                <option value="<%= book._id %>"><%= book.title %> </option>
+                            <% } %> 
+                        <% }) %>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="imprint">Imprint: </label>
+                    <input type="text" id="imprint" placeholder="Publisher and date information" name="imprint" required value="<%= bookinstance?.imprint %>">
+                </div>
+                <div class="form-group">
+                    <label for="due_back">Date when book avaliable: </label>
+                    <input type="date" name="due_back" id="due_back" value="<%= bookinstance?.due_back %>" required>
+                </div>
+                <div class="form-group">
+                    <label for="status">Status: </label>
+                    <select name="status" id="status" required>
+                        <% ['Reserved', 'Loaned', 'Available', 'Maintenance'].forEach(status => { %>
+                            <option value="<%= status %>" <%= bookinstance?.status === status ? 'selected' : '' %> ><%= status %></option>
+                        <% }) %>
+                    </select>
+                </div>
+                <button type="submit">Submit</button>
+            </form>
+            <% if (errors) { %>
+                <ul>
+                    <% errors.forEach(error => { %>
+                        <li><%= error.msg %></li>
+                    <% }) %>
+                </ul>
+            <% } %>
+        </div>
+    </div>
+</body>
+</html>
