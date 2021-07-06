@@ -13,8 +13,9 @@ const app = express()
 app.use(helmet())
 
 // Database connect
-const dbURI = 'mongodb+srv://Anonymous:A4QIA5JJ400AUyuX@node-library.uelbc.mongodb.net/Library?retryWrites=true&w=majority'
-mongoose.connect(dbURI, {useNewUrlParser: true, useUnifiedTopology: true})
+const dev_db_url = 'mongodb+srv://Anonymous:A4QIA5JJ400AUyuX@node-library.uelbc.mongodb.net/Library?retryWrites=true&w=majority'
+const mongoDB = process.env.MONGODB_URI || dev_db_url;
+mongoose.connect(mongoDB, {useNewUrlParser: true, useUnifiedTopology: true})
     .then(result => app.listen(3000))
     .catch(err => console.log(err))
 
